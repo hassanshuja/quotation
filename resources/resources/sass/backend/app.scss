@@ -1,0 +1,499 @@
+
+// Tabler bootstrap variables
+@import "../vendor/tabler/scss/variables";
+
+// Custom Variables
+@import "variables";
+
+// Thème CoreUI
+@import "~@coreui/coreui/scss/coreui";
+@import "~bootstrap-vue/dist/bootstrap-vue.css";
+
+// Tabler components
+@import "../vendor/tabler/scss/dashboard/functions";
+@import "../vendor/tabler/scss/dashboard/cards";
+@import "../vendor/tabler/scss/dashboard/tag";
+@import "../vendor/tabler/scss/dashboard/forms/custom-switch";
+@import "../vendor/tabler/scss/dashboard/fonts/feather";
+
+// Plugins
+@import "~sweetalert2/src/sweetalert2";
+@import "~noty/src/noty";
+@import "~noty/src/themes/bootstrap-v4";
+@import "~sweetalert2/src/sweetalert2";
+@import "~flatpickr/dist/flatpickr.css";
+
+// Components
+@import "../buttons";
+
+// RTL
+@import "../bootstrap-rtl";
+
+$icon-size: 3rem;
+$dasboard: (
+  dash-card: 1rem
+);
+
+[v-cloak] {
+  display: none;
+}
+
+.intl-tel-input {
+  width: 100%;
+}
+
+.alert.alert-top {
+  border: none;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+.custom-control-indicator, .custom-control-description, .switch-label, .switch-handle {
+  margin-top: .25rem;
+}
+
+.flatpickr-calendar {
+  border-radius: 0;
+}
+
+body .v-select {
+  .selected-tag {
+    background-color: #20a8d8;
+    border-color: #20a8d8;
+    color: #fff;
+
+    .close {
+      color: #fff;
+      text-shadow: none;
+      opacity: 1;
+    }
+  }
+
+  .dropdown-toggle, .selected-tag {
+    border-radius: 0;
+  }
+}
+
+.app-header{
+  height : $navbar-height;
+  background: linear-gradient(150deg, #281483 15%, #8f6ed5 70%, #d782d9 94%);
+  font-family: 'Roboto', sans-serif;
+}
+.sidebar .sidebar-header {
+    background: linear-gradient(150deg, #281483 15%, #8f6ed5 70%, #d782d9 94%);
+}
+.navbar-nav .nav-link {
+    color: #f8f9fa;
+}
+// @media (min-width: 992px){
+//   .header-fixed .app-body {
+//       margin-top:$navbar-height;
+//   }
+// }
+
+.sidebar{
+  background: #281483;
+}
+
+.sidebar .sidebar-header {
+  background: linear-gradient(150deg, #281483 15%, #8f6ed5 70%, #d782d9 94%);
+}
+
+.sidebar .sidebar-footer{
+  background: none;
+}
+.sidebar .sidebar-form .form-control {
+  color: #fff;
+  background: #281483;
+  border: 0;
+}
+
+.sidebar .nav-link.active {
+  color: #281483;
+  background: #fff;
+}
+
+.sidebar .nav-link:hover {
+  color: #fff;
+  background: #281483 !important;
+}
+
+.sidebar .nav-title {
+  background: linear-gradient(150deg, #281483 15%, #8f6ed5 70%, #d782d9 94%);
+}
+
+.table th {
+  white-space: nowrap;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+.well{
+  background-color: #f5f5f5;
+  border: 3px dotted #467fcf;
+  padding: 1em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.btn-quote {
+    background: #a780bf;
+    border-color: #8F6BA5;
+    color: #fff;
+}
+.well fieldset {
+    border: 1px solid #ccc!important;
+    clear: both;
+    margin: 1em 0;
+    padding: .5em;
+}
+.well .fieldset .form-control{
+  margin-bottom: 5px;
+}
+.well fieldset legend {
+    border-bottom: none;
+    color: #999;
+    font-size: 1.2em;
+    padding-left: .5em;
+    padding-right: .5em;
+    width: initial;
+    text-align: left;
+    margin-bottom: 0;
+}
+.form-control{
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+.pull-right{
+  float: right;
+}
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+form.quotes-form .table>thead>tr>th {
+  background: #467fcf;
+  text-shadow: -1px -1px 0 #8F6BA5;
+  color: #fff ;
+}
+.company-logo {
+  width: 300px;
+  overflow: hidden;
+  padding-top: 10px;
+  img {
+    width: 250px;
+    height: 250px;
+    border: 1px solid #d0d0d0;
+    padding: 5px;
+  }
+}
+#org-img img { width: 500px;}
+.grid{
+  list-style-type: none;
+  padding: 0;
+}
+.part-list {
+  border: 1px solid #ccc;
+  padding: 19px;
+  margin: 10px 0 10px 0;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  min-height: 50px;
+}
+.part-list .part-name {
+  font-weight: 500;
+  margin-bottom: 15px;
+  color: #1E976B;
+}
+.part-list .total-price .h-total-price {
+  display: inline;
+}
+.part-list .total-price span{
+  display: inline;
+}
+.search-modal-btn .fe-search{
+  font-weight: 600;
+  padding-left: 2px;
+  font-size: 17px;
+  position: relative;
+  top: 1px;
+}
+.user-list {
+  border: 1px solid #ccc;
+  padding: 19px;
+  margin: 10px 0 10px 0;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+.user-list h4 {
+  word-break: break-word;
+}
+.user-list p {
+  word-break: break-all;
+}
+.search-content {
+  max-height: 500px;
+  overflow-y: auto;
+}
+.select-client {
+  display: inline-block;
+}
+#parts_part_name_edit_error, #labour_part_name_edit_error {
+  color: red;
+}
+#org-img .thumbnail {
+    max-width: 100%;
+    max-height: 250px;
+}
+.thumbnail {
+    display: block;
+    padding: 4px;
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+#jobPartsTableDivShow .thead-show th {
+  background:#303030;
+  text-shadow:none;
+  color: #fff;
+}
+#quotes-view #viewport {
+  overflow: hidden;
+  margin-top: 30px;
+}
+#quotes-invoice #viewport {
+  overflow: hidden;
+  margin-top: 30px;
+}
+.btn-show {
+  margin-left:10px;
+}
+form.invoices-form .table > thead > tr > th {
+    background: #24b37e;
+    text-shadow: -1px -1px 0 #1C8A61;
+    color: #fff;
+}
+.btn-invoices {
+  background: #24b37e;
+  text-shadow: -1px -1px 0 #1C8A61;
+  color: #fff;
+}
+.invoices-form .well {
+  border: 3px dotted #24b37e;
+}
+#Invoices-view #viewport {
+  overflow: hidden;
+  margin-top: 30px;
+}
+// ::-webkit-scrollbar {
+//     width: 12px;
+// }
+// ::-webkit-scrollbar-track {
+//     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+//     border-radius: 10px;
+// }
+// ::-webkit-scrollbar-thumb {
+//     border-radius: 10px;
+//     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+// }
+.my-table th, .my-table td {
+  padding: 0.15rem !important;
+}
+#manage{
+    border: 1px
+    solid rgb(204, 204, 204);
+    height: 165px;
+    width: 450px;
+    padding-right: 1px;
+}
+#right{
+    border: 1px
+    solid rgb(204, 204, 204);
+    height: 165px;
+    width: 450px;
+    padding-left: 1px;
+    text-align: right;
+}
+#box_right{
+  border: 1px solid #cccccc;
+    height: 165px;
+}
+
+.box_text{
+  text-align: right;
+}
+#sideline{
+    border-collapse: collapse;
+    padding-top: 10px;
+}
+#fontset{
+  font-size: 14px;
+}
+.line{
+line-height: 0.4;
+}
+.w-45 {
+  width: 45%;
+}
+#jobPartsTableDiv {
+  table {
+    thead {
+      tr {
+        th:first-child {
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+#quotes-view, #quotes-invoice, #quotes-attachment {
+  font-size: 12px;
+  page-break-inside: avoid;
+}
+#jobPartsTableDivShow {
+  table {
+    tr {
+      th {
+       padding: 2px 10px;
+      }
+      td {
+        h3 {
+          margin: 0;
+        }
+       padding: 2px 10px;
+      }
+    }
+    thead {
+      tr {
+        th:first-child {
+          width: 60%;
+        }
+      }
+    }
+  }
+}
+table#table-invoice-total th, table#table-invoice-total td {
+  padding: 4px;
+}
+.ageing-report {
+  .invoice-status {
+    text-transform: capitalize;
+  }
+}
+/* PRINT MEDIA QUERIES */
+@media print {
+* {
+    -webkit-print-color-adjust: exact !important; /*Chrome, Safari */
+    color-adjust: exact !important;  /*Firefox*/
+  }
+  #hidedownload{
+    display: none;
+  }
+  #hideprint{
+    display: none;
+  }
+  #hideback{
+    display: none;
+  }
+
+  .thead-show th {
+    background: #303030 !important;
+    text-shadow: none;
+    color: #fff !important;
+  }
+  button {
+    visibility: hidden;
+  }
+  body * {
+      visibility: hidden;
+    }
+    #Invoices-view, #quotes-view, #quotes-view *,#quotes-invoice, #quotes-invoice *,  #Invoices-view * {
+      visibility: visible;
+    }
+    #Invoices-view, #quotes-view {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  // .action{
+  //     display: flex;
+  //     align-items: center !important;
+  //     justify-content: center !important;
+  //     height: 100vh !important;
+  // }
+  .texty{
+    font-size: 1.2em !important;
+  }
+  @page {
+    margin: 2cm;
+  }
+  #viewport {
+    page-break-inside: avoid;
+  }
+  .pagebreak {
+    page-break-inside: avoid;
+  }
+}
+
+.icon-shield {
+  font-size: $icon-size;
+}
+
+.unallocated-jobs {
+  background-color: #2FDC9A;
+  font-size: map-get($dasboard, dash-card);
+  box-shadow: 1px 1px 6px 2px #0c6f0391;
+}
+
+.in-progress-jobs {
+  background-color: #4F94F5;
+  font-size: map-get($dasboard, dash-card);
+  box-shadow: 1px 1px 6px 2px #144256b5
+}
+
+.completed-jobs {
+  background-color: #EF6C49;
+  font-size: map-get($dasboard, dash-card);
+  box-shadow: 1px 1px 6px 2px #8e321aa1
+}
+
+.quoted-jobs {
+  background-color: #EAD84D;
+  font-size: map-get($dasboard, dash-card);
+  box-shadow: 1px 1px 6px 2px #90821894
+}
+
+.invoiced-jobs {
+  background-color: #2FDC9A;
+  font-size: map-get($dasboard, dash-card);
+  box-shadow: 1px 1px 6px 2px #0c6f0391;
+}
+
+.quoted-amount {
+  background-color: #4F94F5;
+  font-size: map-get($dasboard, dash-card);
+  box-shadow: 1px 1px 6px 2px #144256b5
+}
+
+.invoiced-amount {
+  background-color: #EF6C49;
+  font-size: map-get($dasboard, dash-card);
+  box-shadow: 1px 1px 6px 2px #8e321aa1
+}
+/* PRINT MEDIA QUERIES */
+
+.blueimp-gallery-display {
+  display: none;
+}
