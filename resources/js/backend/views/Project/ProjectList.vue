@@ -29,23 +29,23 @@
                  sort-by="projects.created_at"
                  :sort-desc="true"
         >
-          <template slot="HEAD_checkbox" slot-scope="data"></template>
-          <template slot="checkbox" slot-scope="row">
+          <template v-slot:head(checkbox)="data"></template>
+          <template v-slot:cell(checkbox)="row">
             <b-form-checkbox :value="row.item.id" v-model="selected"></b-form-checkbox>
           </template>
-          <template slot="name" slot-scope="row">
+          <template v-slot:cell(name)="row">
             <span v-text="row.item.name"></span>
           </template>
-          <template slot="description" slot-scope="row">
+          <template v-slot:cell(description)="row">
             <span v-text="row.item.description"></span>
           </template>
-          <template slot="project.created_at" slot-scope="row">
+          <template v-slot:cell(project.created_at)="row">
             {{ row.item.created_at }}
           </template>
-          <template slot="project.updated_at" slot-scope="row">
+          <template v-slot:cell(project.updated_at)="row">
             {{ row.item.updated_at }}
           </template>
-          <template slot="actions" slot-scope="row">
+          <template v-slot:cell(actions)="row">
             <b-button v-if="row.item.id" size="sm" variant="primary" :to="`/projects/${row.item.id}/edit`" v-b-tooltip.hover :title="$t('buttons.edit')" class="mr-1">
               <i class="fe fe-edit"></i>
             </b-button>

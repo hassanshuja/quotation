@@ -113,7 +113,7 @@
             <!-- Terms and conditions -->
             <div class="col-sm-6">
               <h3 class="payment-terms" style="color:#000">Bank Details</h3>
-              <span class="check-text"> FNB Cheque Account: 62589280066 </span>
+              <span class="check-text"> {{settings.bank_account}} </span>
             </div>
             <!-- Totals -->
             <div class="col-sm-6 align-right">
@@ -602,7 +602,7 @@
 import axios from 'axios'
 import form from '../../mixins/form'
 import moment from 'moment'
-import bModalDirective from 'bootstrap-vue/es/directives/modal/modal'
+import bModalDirective from 'bootstrap-vue/esm/directives/modal/modal'
 import swal from 'sweetalert2'
 
 export default {

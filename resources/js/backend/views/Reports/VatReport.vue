@@ -52,7 +52,6 @@
             <td>ZAR {{ outputVat.toFixed(2) }}</td>
             <td>ZAR {{ inputVat.toFixed(2) }}</td>
             <td>ZAR {{ payableVat.toFixed(2) }}</td>
-            <td></td>
           </template>
         </b-table>
       </b-datatable>

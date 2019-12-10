@@ -35,19 +35,19 @@
           id="expenses-report"
           v-model="model.rows"
         >
-          <template slot="created_at" slot-scope="row">
+          <template v-slot:cell(created_at)="row">
             <span>{{ row.item.created_at }}</span>
           </template>
-          <template slot="expenses" slot-scope="row">
+          <template v-slot:cell(expenses)="row">
             <span>ZAR {{ parseFloat(row.item.expenses).toFixed(2) }}</span>
           </template>
-          <template slot="quote_amount" slot-scope="row">
+          <template v-slot:cell(quote_amount)="row">
             <span>ZAR {{ parseFloat(row.item.quote_amount).toFixed(2) }}</span>
           </template>
-          <template slot="profit" slot-scope="row">
+          <template v-slot:cell(profit)="row">
             <span>ZAR {{ (parseFloat(row.item.quote_amount) - parseFloat(row.item.expenses)).toFixed(2) }}</span>
           </template>
-          <template slot="status" slot-scope="row">
+          <template v-slot:cell(status)="row">
             <span v-if="row.item.status === 'Received'">Received</span>
             <span v-if="row.item.status === 'Assigned'">Assigned</span>
             <span v-if="row.item.status === 'On Hold'">On Hold</span>

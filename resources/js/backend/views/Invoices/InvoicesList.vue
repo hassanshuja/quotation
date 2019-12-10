@@ -29,36 +29,36 @@
                  sort-by="invoices.created_at"
                  :sort-desc="false"
         >
-          <template slot="HEAD_checkbox" slot-scope="data"></template>
-          <template slot="checkbox" slot-scope="row">
+          <template v-slot:head(checkbox)="row"></template>
+          <template v-slot:cell(checkbox)="row">
             <b-form-checkbox :value="row.item.id" v-model="selected"></b-form-checkbox>
           </template>
-          <template slot="invoice_name" slot-scope="row">
+          <template v-slot:cell(invoice_name)="row">
             <span v-text="row.item.invoice_name"></span>
           </template>
-          <template slot="invoice_reference" slot-scope="row">
+          <template v-slot:cell(invoice_reference)="row">
             <span v-text="row.item.invoice_digit"></span>-
             <span v-text="row.item.invoice_number"></span>
           </template>
-          <template slot="net_amount" slot-scope="row">
+          <template v-slot:cell(net_amount)="row">
             <span>{{ parseFloat(row.item.net_amount).toFixed(2) }}</span>
           </template>
-          <template slot="vat_amount" slot-scope="row">
+          <template v-slot:cell(vat_amount)="row">
             <span>{{ parseFloat(row.item.vat_amount).toFixed(2) }}</span>
           </template>
-          <template slot="total_amount" slot-scope="row">
+          <template v-slot:cell(total_amount)="row">
             <span>{{ parseFloat(row.item.total_amount).toFixed(2) }}</span>
           </template>
-          <template slot="invoice_status" slot-scope="row">
+          <template v-slot:cell(invoice_status)="row">
             <span style="text-transform: capitalize;" v-text="row.item.invoice_status"></span>
           </template>
-          <template slot="invoices.created_at" slot-scope="row">
+          <template v-slot:cell(invoices.created_at)="row">
             {{ row.item.created_at }}
           </template>
-          <template slot="invoices.updated_at" slot-scope="row">
+          <template v-slot:cell(invoices.updated_at)="row">
             {{ row.item.updated_at }}
           </template>
-          <template slot="actions" slot-scope="row">
+          <template v-slot:cell(actions)="row">
             <b-button size="sm" variant="success" :to="`/invoices/${row.item.id}/view`" v-b-tooltip.hover :title="$t('buttons.preview')" class="mr-1">
               <i class="fe fe-eye"></i>
             </b-button>

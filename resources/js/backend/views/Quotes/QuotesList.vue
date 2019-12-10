@@ -10,42 +10,43 @@
         </div>
       </template>
       <b-datatable ref="datasource"
-                   @context-changed="onContextChanged"
-                   search-route="admin.quotes.search"
-                   delete-route="admin.quotes.destroy"
-                   action-route="admin.quotes.batch_action" :actions="actions"
-                   :selected.sync="selected"
+          @context-changed="onContextChanged"
+          search-route="admin.quotes.search"
+          delete-route="admin.quotes.destroy"
+          action-route="admin.quotes.batch_action" :actions="actions"
+          :selected.sync="selected"
       >
         <b-table ref="datatable"
-                 striped
-                 bordered
-                 show-empty
-                 stacked="md"
-                 no-local-sorting
-                 :empty-text="$t('labels.datatables.no_results')"
-                 :empty-filtered-text="$t('labels.datatables.no_matched_results')"
-                 :fields="fields"
-                 :items="dataLoadProvider"
-                 sort-by="quotes.created_at"
-                 :sort-desc="true"
+          striped
+          bordered
+          show-empty
+          stacked="md"
+          no-local-sorting
+          :empty-text="$t('labels.datatables.no_results')"
+          :empty-filtered-text="$t('labels.datatables.no_matched_results')"
+          :fields="fields"
+          :items="dataLoadProvider"
+          sort-by="quotes.created_at"
+          :sort-desc="true"
+          
         >
-          <template slot="HEAD_checkbox" slot-scope="data"></template>
-          <template slot="checkbox" slot-scope="row">
+          <template v-slot:head(checkbox)="data"></template>
+          <template v-slot:cell(checkbox)="row">
             <b-form-checkbox :value="row.item.id" v-model="selected"></b-form-checkbox>
           </template>
-          <template slot="quotation_number" slot-scope="row">
+          <template v-slot:cell(quotation_number)="row">
             <span v-text="row.item.quotation_digit"></span>-<span v-text="row.item.quotation_number"></span>
           </template>
-          <template slot="quotation_name" slot-scope="row">
+          <template v-slot:cell(quotation_name)="row">
             <span v-text="row.item.quotation_name"></span>
           </template>
-          <template slot="quotes.created_at" slot-scope="row">
+          <template v-slot:cell(quotes.created_at)="row">
             {{ row.item.created_at }}
           </template>
-          <template slot="quotes.updated_at" slot-scope="row">
+          <template v-slot:cell(quotes.updated_at)="row">
             {{ row.item.updated_at }}
           </template>
-          <template slot="actions" slot-scope="row">
+          <template v-slot:cell(actions)="row">
             <b-button size="sm" variant="success" :to="`/quotes/${row.item.id}/view`" v-b-tooltip.hover :title="$t('buttons.preview')" class="mr-1">
               <i class="fe fe-eye"></i>
             </b-button>
@@ -83,8 +84,12 @@ export default {
     }
   },
   methods: {
+    checkrow(rows){
+      console.log(rows)
+    },
     dataLoadProvider (ctx) {
-      return this.$refs.datasource.loadData(ctx.sortBy, ctx.sortDesc)
+      var a = this.$refs.datasource.loadData(ctx.sortBy, ctx.sortDesc)
+      return a
     },
     onContextChanged () {
       return this.$refs.datatable.refresh()

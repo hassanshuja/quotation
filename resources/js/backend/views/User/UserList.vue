@@ -27,21 +27,21 @@
                  :fields="fields"
                  :items="dataLoadProvider"
         >
-          <template slot="HEAD_checkbox" slot-scope="data"></template>
-          <template slot="checkbox" slot-scope="row">
+          <template v-slot:head(checkbox)="row"></template>
+          <template v-slot:cell(checkbox)="row">
             <b-form-checkbox :value="row.item.id" v-model="selected"></b-form-checkbox>
           </template>
-          <template slot="name" slot-scope="row">
+          <template v-slot:cell(name)="row">
             <router-link v-if="row.item.can_edit" :to="`/users/${row.item.id}/edit`" v-text="row.value"></router-link>
             <span v-else v-text="row.value"></span>
           </template>
-          <template slot="active" slot-scope="row">
+          <template v-slot:cell(active)="row">
             <c-switch v-if="row.item.can_edit" :checked="row.value" @change="onActiveToggle(row.item.id)"></c-switch>
           </template>
-          <template slot="roles" slot-scope="row">
+          <template v-slot:cell(roles)="row">
             {{ formatRoles(row.value) }}
           </template>
-          <template slot="actions" slot-scope="row">
+          <template v-slot:cell(actions)="row">
             <b-button v-if="row.item.can_edit" size="sm" variant="primary" :to="`/users/${row.item.id}/edit`" v-b-tooltip.hover :title="$t('buttons.edit')" class="mr-1">
               <i class="fe fe-edit"></i>
             </b-button>

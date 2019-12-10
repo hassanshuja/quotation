@@ -33,16 +33,16 @@
           :sort-desc="true"
           id="status-report"
         >
-          <template slot="created_at" slot-scope="row">
+          <template v-slot:cell(created_at)="row">
             <span>{{ row.item.created_at }}</span>
           </template>
-          <template slot="project_manager" slot-scope="row">
+          <template v-slot:cell(project_manager)="row">
             <span v-if="row.item.get_project_manager">{{ row.item.get_project_manager.name }}</span>
           </template>
-          <template slot="assigned_user" slot-scope="row">
+          <template v-slot:cell(assigned_user)="row">
             <span v-if="row.item.get_assigned_user">{{ row.item.get_assigned_user.name }}</span>
           </template>
-          <template slot="status" slot-scope="row">
+          <template v-slot:cell(status)="row">
             <span v-if="row.item.status === 'Received'">Received</span>
             <span v-if="row.item.status === 'Assigned'">Assigned</span>
             <span v-if="row.item.status === 'On Hold'">On Hold</span>

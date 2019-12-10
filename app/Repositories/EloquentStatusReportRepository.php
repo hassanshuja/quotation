@@ -33,9 +33,10 @@ class EloquentStatusReportRepository extends EloquentBaseRepository implements R
      *
      * @return mixed
      */
+    
     public function save(StatusReport $statusreport, array $input)
     {
-        DB::transaction(function () use ($StatusReport, $input) {
+        DB::transaction(function () use ($statusreport, $input) {
             if (! $statusreport->save()) {
                 throw new GeneralException(__('exceptions.backend.contact.save'));
             }           

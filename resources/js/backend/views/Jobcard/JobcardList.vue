@@ -29,20 +29,20 @@
                  sort-by="jobcard.created_at"
                  :sort-desc="true"
         >
-          <template slot="HEAD_checkbox" slot-scope="data"></template>
-          <template slot="checkbox" slot-scope="row">
+          <template v-slot:head(checkbox)="data"></template>
+          <template v-slot:cell(checkbox)="row">
             <b-form-checkbox :value="row.item.id" v-model="selected"></b-form-checkbox>
           </template>
-          <template slot="jobcard_num" slot-scope="row">
+          <template v-slot:cell(jobcard_num)="row">
             <span v-text="row.item.jobcard_num"></span>
           </template>
-          <template slot="jobcard.created_at" slot-scope="row">
+          <template v-slot:cell(jobcard.created_at)="row">
             {{ row.item.created_at }}
           </template>
-          <template slot="jobcard.updated_at" slot-scope="row">
+          <template v-slot:cell(jobcard.updated_at)="row">
             {{ row.item.updated_at }}
           </template>
-          <template slot="actions" slot-scope="row">
+          <template v-slot:cell(actions)="row">
             <b-button v-if="row.item.id" size="sm" variant="primary" :to="`/jobcards/${row.item.id}/edit`" v-b-tooltip.hover :title="$t('buttons.edit')" class="mr-1">
               <i class="fe fe-edit"></i>
             </b-button>

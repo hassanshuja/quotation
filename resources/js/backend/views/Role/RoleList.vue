@@ -28,11 +28,11 @@
                  sort-by="order"
                  :sort-desc="false"
         >
-          <template slot="name" slot-scope="row">
+          <template v-slot:cell(name)="row">
             <router-link v-if="row.item.can_edit" :to="`/roles/${row.item.id}/edit`" v-text="row.value"></router-link>
             <span v-else v-text="row.value"></span>
           </template>
-          <template slot="actions" slot-scope="row">
+          <template v-slot:cell(actions)="row">
             <b-button v-if="row.item.can_edit" size="sm" variant="primary" :to="`/roles/${row.item.id}/edit`" v-b-tooltip.hover :title="$t('buttons.edit')" class="mr-1">
               <i class="fe fe-edit"></i>
             </b-button>

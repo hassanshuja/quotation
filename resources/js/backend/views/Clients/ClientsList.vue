@@ -29,20 +29,20 @@
                  sort-by="clients.created_at"
                  :sort-desc="true"
         >
-          <template slot="HEAD_checkbox" slot-scope="data"></template>
-          <template slot="checkbox" slot-scope="row">
+          <template v-slot:head(checkbox)="row"></template>
+          <template v-slot:cell(checkbox)="row">
             <b-form-checkbox :value="row.item.id" v-model="selected"></b-form-checkbox>
           </template>
-          <template slot="business_name" slot-scope="row">
+          <template v-slot:cell(business_name)="row">
             <span v-text="row.item.business_name"></span>
           </template>
-          <template slot="clients.created_at" slot-scope="row">
+          <template v-slot:cell(clients.created_at)="row">
             {{ row.item.created_at }}
           </template>
-          <template slot="clients.updated_at" slot-scope="row">
+          <template v-slot:cell(clients.updated_at)="row">
             {{ row.item.updated_at }}
           </template>
-          <template slot="actions" slot-scope="row">
+          <template v-slot:cell(actions)="row">
             <b-button v-if="row.item.id" size="sm" variant="primary" :to="`/clients/${row.item.id}/edit`" v-b-tooltip.hover :title="$t('buttons.edit')" class="mr-1">
               <i class="fe fe-edit"></i>
             </b-button>
@@ -69,8 +69,8 @@ export default {
         { key: 'business_name', label: this.$t('validation.clients.business_name'), sortable: true },
         { key: 'email', label: this.$t('validation.clients.email'), sortable: true },
         { key: 'region', label: this.$t('validation.clients.region'), sortable: true },
-        { key: 'primary_phone', label: this.$t('validation.clients.primary_phone'), sortable: true },
-        { key: 'notes', label: this.$t('validation.clients.notes'), sortable: true },
+        // { key: 'primary_phone', label: this.$t('validation.clients.primary_phone'), sortable: true },
+        // { key: 'notes', label: this.$t('validation.clients.notes'), sortable: true },
         { key: 'clients.created_at', label: this.$t('labels.created_at'), 'class': 'text-center', sortable: true },
         { key: 'clients.updated_at', label: this.$t('labels.updated_at'), 'class': 'text-center', sortable: true },
         { key: 'actions', label: this.$t('labels.actions'), 'class': 'nowrap' }
