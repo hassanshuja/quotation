@@ -841,10 +841,10 @@ export default {
           // console.log(item)
           if (item.labour || item.parts || item.quotation) {
             if (!this.isNew) {
-              this.Invoices.InvoicesNetTotal += parseInt(item.net_total)
+              this.Invoices.InvoicesNetTotal += parseFloat(item.net_total)
               this.Invoices.InvoicesVatTotal += this.model.vat_rates * item.net_total / 100
             } else {
-              this.Invoices.InvoicesNetTotal += parseInt(item.net_total)
+              this.Invoices.InvoicesNetTotal += parseFloat(item.net_total)
               this.Invoices.InvoicesVatTotal += this.settings.Invoice_vat * item.net_total / 100
             }
           }
@@ -866,7 +866,7 @@ export default {
       }
       this.model.net_amount = (this.Invoices.InvoicesNetTotal).toFixed(2)
       this.model.vat_amount = (this.Invoices.InvoicesVatTotal).toFixed(2)
-      this.model.total_amount = (this.Invoices.InvoicesTotal = parseInt(this.Invoices.InvoicesNetTotal) + parseInt(this.Invoices.InvoicesVatTotal)).toFixed(2)
+      this.model.total_amount = (this.Invoices.InvoicesTotal = parseFloat(this.Invoices.InvoicesNetTotal) + parseFloat(this.Invoices.InvoicesVatTotal)).toFixed(2)
       this.model.rows = val
     },
     'model.rows': function (val) {
