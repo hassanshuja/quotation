@@ -54,7 +54,7 @@ class Jobcard extends Model
 
     public function quotes()
     {
-        return $this->belongsTo(Quotes::class);
+        return $this->belongsTo(Quotes::class, 'jobcard_num', 'jobcard_id');
     }
 
     public function get_project_manager() {

@@ -36,12 +36,19 @@
           <template v-slot:cell(created_at)="row">
             <span>{{ row.item.created_at }}</span>
           </template>
+          <template v-slot:cell(facility_name)="row">
+            <span>{{ row.item.facility_name }}</span>
+          </template>
           <template v-slot:cell(project_manager)="row">
             <span v-if="row.item.get_project_manager">{{ row.item.get_project_manager.name }}</span>
+          </template>
+          <template v-slot:cell(invoice_number)="row">
+            <span v-if="row.item.invoice_number">{{ row.item.invoice_number }}</span>
           </template>
           <template v-slot:cell(assigned_user)="row">
             <span v-if="row.item.get_assigned_user">{{ row.item.get_assigned_user.name }}</span>
           </template>
+          
           <template v-slot:cell(status)="row">
             <span v-if="row.item.status === 'Received'">Received</span>
             <span v-if="row.item.status === 'Assigned'">Assigned</span>
@@ -71,9 +78,12 @@ export default {
       fields: [
         { key: 'created_at', label: 'Date' },
         { key: 'jobcard_num', label: 'Jobcard #' },
+        { key: 'facility_name', label: 'Facility Name' },
         { key: 'description', label: 'Description' },
         { key: 'project_manager', label: 'Project Manager' },
         { key: 'assigned_user', label: 'Assigned Technician' },
+        { key: 'invoice_number', label: 'Invoice #' },
+
         { key: 'status', label: 'Status', sortable: true }
       ],
       actions: {

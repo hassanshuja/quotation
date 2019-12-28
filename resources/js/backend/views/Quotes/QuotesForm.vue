@@ -530,7 +530,7 @@
                 <b-form-input
                   id="labour_part_quantity_edit"
                   name="labour_part_quantity_edit"
-                  type="number"
+                  type="text"
                   v-model="labour.labour_quantity"
                   @blur.native="labour.labour_quantity = parseFloat(labour.labour_quantity).toFixed(2)"
                   @change="LabourRateChange"
@@ -542,7 +542,7 @@
                 <b-form-input
                   id="labour_part_sales_price_net_edit"
                   name="labour_part_sales_price_net_edit"
-                  type="number"
+                  type="text"
                   v-model="labour.labour_rate_zar"
                   @change="LabourRateChange"
                 ></b-form-input>
@@ -749,7 +749,7 @@
                 <b-form-input
                   id="parts_part_quantity_edit"
                   name="parts_part_quantity_edit"
-                  type="number"
+                  type="text"
                   v-model="parts.parts_quantity"
                   @change="PartsRateChange"
                 ></b-form-input>
@@ -760,7 +760,7 @@
                 <b-form-input
                   id="parts_part_sales_price_net_edit"
                   name="parts_part_sales_price_net_edit"
-                  type="number"
+                  type="text"
                   v-model="parts.parts_rate_zar"
                   @change="PartsRateChange"
                 ></b-form-input>
@@ -1267,6 +1267,7 @@ export default {
         return false
       }
       this.rows.push({ section: this.section_name })
+      // console.log(this.rows)
       this.$refs.sectionModalRef.hide()
       this.section_name = ''
       // this.sectionStatus = 1
@@ -1296,7 +1297,14 @@ export default {
       if (this.section_select !== 'null') {
         this.rows.splice(this.section_select + 1, 0, { labour: this.labour.labour_name, parent_section: this.section_select, name: this.labour.labour_name, quantity: this.labour.labour_quantity, net_amount: this.labour.labour_rate_zar, net_total: this.labour.net_labour_price_zar, labour_vat_rate: this.labour.labour_vat_rate, labour_vat_amount_zar: this.labour.labour_vat_amount_zar, labour_total_zar: this.labour.labour_total_zar })
       } else {
+        console.log(this.section_select)
+        if(this.section_select == "null"){
         this.rows.unshift({ labour: this.labour.labour_name, parent_section: this.section_select, name: this.labour.labour_name, quantity: this.labour.labour_quantity, net_amount: this.labour.labour_rate_zar, net_total: this.labour.net_labour_price_zar, labour_vat_rate: this.labour.labour_vat_rate, labour_vat_amount_zar: this.labour.labour_vat_amount_zar, labour_total_zar: this.labour.labour_total_zar })
+
+        }else{
+        this.rows.push({ labour: this.labour.labour_name, parent_section: this.section_select, name: this.labour.labour_name, quantity: this.labour.labour_quantity, net_amount: this.labour.labour_rate_zar, net_total: this.labour.net_labour_price_zar, labour_vat_rate: this.labour.labour_vat_rate, labour_vat_amount_zar: this.labour.labour_vat_amount_zar, labour_total_zar: this.labour.labour_total_zar })
+
+        }
       }
       this.hideModal('addLabourSection')
     },

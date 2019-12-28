@@ -15,6 +15,7 @@ use DB;
 use App\Exports\DataTableExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\User;
+use App\Models\Invoices;
 
 class JobcardController extends BackendController
 {
@@ -62,6 +63,7 @@ class JobcardController extends BackendController
             'travelling_paid',
             'status',
         ]);
+
 
         if ($request->get('exportData')) {
             //dd('hello');
@@ -115,6 +117,12 @@ class JobcardController extends BackendController
      public function statusreport(Request $request)
     {
 
+        $invoice_rows = DB::select('SELECT invoice_number, JSON_EXTRACT(invoices.rows, "$[*].quotation_id") AS id FROM invoices');
+        
+
+
+
+// dd($invoice_rows);
         /** @var Builder $query */
         $query = $this->jobcard->query();
         $requestSearchQuery = new RequestSearchQuery($request, $query, [
@@ -125,6 +133,8 @@ class JobcardController extends BackendController
 
 
         ]);
+
+
             if ($request->get('exportData')) {
             return $requestSearchQuery->export([
             'jobcard_num',
@@ -141,10 +151,7 @@ class JobcardController extends BackendController
 
 
 
-
-
-
-        return $requestSearchQuery->resultJobcard([
+        $res = $requestSearchQuery->resultJobcard([
             'jobcard.id',
             'jobcard_num',
             'description',
@@ -159,7 +166,40 @@ class JobcardController extends BackendController
             //'quoted_amount',
             'jobcard.created_at',
             'jobcard.updated_at',
-        ]);
+        ])->toArray();
+        foreach($res["data"] as $key => $val) {
+            foreach($invoice_rows  as $rowz){
+                if($val['quotes'] !== null && $val['status'] == 'Invoiced'){
+                    if(in_array($val['quotes']['id'], json_decode($rowz->id))){
+                        $res["data"][$key]['invoice_number'] = $rowz->invoice_number;
+                        break;
+                    }else{
+                        $res["data"][$key]['invoice_number']  = '';
+                    }
+                }else{
+                    $res["data"][$key]['invoice_number'] =  '';
+                }
+            }
+        }
+
+return $res;
+
+        // return $requestSearchQuery->resultJobcard([
+        //     'jobcard.id',
+        //     'jobcard_num',
+        //     'description',
+        //     'problem_type',
+        //     'priority',
+        //     'status',
+        //     'facility_name',
+        //     'district',
+        //     'sub_district',
+        //     'projectmanager_id',
+        //     'contractor_id',
+        //     //'quoted_amount',
+        //     'jobcard.created_at',
+        //     'jobcard.updated_at',
+        // ]);
     }
 
     public function jobcardreports(Request $request) {
