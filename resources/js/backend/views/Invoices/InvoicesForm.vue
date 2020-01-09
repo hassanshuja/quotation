@@ -38,7 +38,7 @@
         <b-row>
           <b-col sm="6">
             <div class="well">
-              <b-btn class="pull-right search-modal-btn btn-invoices" title="Find Client" v-b-modal.client-modal>
+              <b-btn class="pull-right search-modal-btn btn-invoices" title="Find Client" @click="showModal('clientSearchModalRef')">
                 <span class="hidden-xs">Find Client<i class="fe fe-search"></i></span>
               </b-btn>
               <div class="clearfix"></div>
@@ -1597,6 +1597,9 @@ export default {
       this.last_Invoice_ref = data.invoice_number
     },
     showModal (ModalRef) {
+      if(ModalRef === 'clientSearchModalRef'){
+        this.$refs.clientSearchModalRef.show()
+      }
       if (ModalRef === 'sectionModalRef') {
         this.$refs.sectionModalRef.show()
       }

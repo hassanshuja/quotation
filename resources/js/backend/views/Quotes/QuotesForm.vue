@@ -41,7 +41,7 @@
         <b-row>
           <b-col sm="6">
             <div class="well">
-              <b-btn variant="primary" class="pull-right search-modal-btn" title="Find Client" v-b-modal.client-modal>
+              <b-btn variant="primary" class="pull-right search-modal-btn" title="Find Client" @click="showModal('clientSearchModalRef')">
                 <span class="hidden-xs">Find Client<i class="fe fe-search"></i></span>
               </b-btn>
               <div class="clearfix"></div>
@@ -1528,6 +1528,10 @@ export default {
       this.last_quote_ref = data.quotation_number
     },
     showModal (ModalRef) {
+      if(ModalRef === 'clientSearchModalRef'){
+        console.log('asldkfjalsdkjf')
+        this.$refs.clientSearchModalRef.show()
+      }
       if (ModalRef === 'sectionModalRef') {
         this.$refs.sectionModalRef.show()
       }
