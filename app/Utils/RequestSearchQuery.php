@@ -187,8 +187,9 @@ class RequestSearchQuery
         //         return is_numeric($binding) ? $binding : "'{$binding}'";
         //     })->toArray());
         // dd($result);
-            $result = $this->query->paginate($this->request->get('perPage'), $columns);
+            $result = $this->query->with('quotes')->paginate($this->request->get('perPage'), $columns);
             // return response()->json(['hi' => $result]);
+            // dd($result);
             return $result;
         }
 }

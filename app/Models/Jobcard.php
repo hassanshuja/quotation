@@ -19,7 +19,7 @@ class Jobcard extends Model
 {
 
     protected $with = [
-        'quotes',
+        // 'quotes',
         'get_assigned_user',
         'get_project_manager'
     ];
@@ -54,8 +54,14 @@ class Jobcard extends Model
 
     public function quotes()
     {
-        return $this->belongsTo(Quotes::class, 'jobcard_num', 'jobcard_id');
+        return $this->belongsTo(Quotes::class, 'id', 'jobcard_id');
     }
+
+    // public function quotation()
+    // {
+    //     return $this->belongsTo(Quotes::class, 'id', 'jobcard_id');
+        
+    // }
 
     public function get_project_manager() {
         return $this->belongsTo(User::class, 'projectmanager_id');

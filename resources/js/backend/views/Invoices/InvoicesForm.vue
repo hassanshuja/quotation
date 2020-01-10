@@ -128,7 +128,7 @@
                 :label-cols="2"
                 :feedback="feedback('project_id')"
               >
-                <b-select class="col-sm-4" v-model="model.project_id" :state="state('project_id')">
+                <b-select class="col-sm-6" v-model="model.project_id" :state="state('project_id')">
                   <option value="">Please Select Projects</option>
                   <option v-for="(option, index) in projects" :key="index" :value="option.id">
                     {{ option.name }}
@@ -162,7 +162,7 @@
                 <b-form-input
                   id="invoice_name"
                   name="invoice_name"
-                  class="col-sm-4"
+                  class="col-sm-6"
                   :placeholder="$t('validation.invoices.invoice_name')"
                   v-model="model.invoice_name"
                   :state="state('invoice_name')"
@@ -177,7 +177,7 @@
                 :label-cols="2"
                 :feedback="feedback('invoice_date')"
               >
-                <b-col sm="4">
+                <b-col sm="6">
                   <b-form-input
                     id="invoice_date"
                     name="invoice_date"
@@ -198,7 +198,7 @@
                 :label-cols="2"
                 :feedback="feedback('invoice_number')"
               >
-                <b-col sm="4">
+                <b-col sm="6">
                   <b-form-input
                     id="invoice_number"
                     name="invoice_number"

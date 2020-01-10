@@ -118,7 +118,7 @@ class JobcardController extends BackendController
     {
 
         $invoice_rows = DB::select('SELECT invoice_number, JSON_EXTRACT(invoices.rows, "$[*].quotation_id") AS id FROM invoices');
-
+// dd($invoice_rows);
         /** @var Builder $query */
         $query = $this->jobcard->query();
         $requestSearchQuery = new RequestSearchQuery($request, $query, [
@@ -168,18 +168,23 @@ class JobcardController extends BackendController
             // dd($invoice_rows, $val);
             foreach($invoice_rows  as $rowz){
                 if($val['quotes'] !== null && $val['status'] == 'Invoiced'){
-                    if(in_array($val['quotes']['id'], json_decode($rowz->id))){
-                        $res["data"][$key]['invoice_number'] = $rowz->invoice_number;
-                        break;
-                    }else{
-                        $res["data"][$key]['invoice_number']  = '';
+                    // var_dump(json_decode($rowz->id));
+                    if(json_decode($rowz->id) !==  null){
+                        if(in_array($val['quotes']['id'], json_decode($rowz->id))){
+                            $res["data"][$key]['invoice_number'] = $rowz->invoice_number;
+                            break;
+                        }else{
+                            $res["data"][$key]['invoice_number']  = '';
+                        }
                     }
+                    
                 }else{
                     $res["data"][$key]['invoice_number'] =  '';
                 }
             }
         }
 
+        // dd($res);
 return $res;
 
         // return $requestSearchQuery->resultJobcard([
