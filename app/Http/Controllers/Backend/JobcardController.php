@@ -228,7 +228,7 @@ class JobcardController extends BackendController
                 }
         
                 // dd($res);
-        // return $res;
+        return $res;
     }
 
     public function jobcardreports(Request $request) {
