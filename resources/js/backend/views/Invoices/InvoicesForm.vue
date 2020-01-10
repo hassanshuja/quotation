@@ -38,7 +38,7 @@
         <b-row>
           <b-col sm="6">
             <div class="well">
-              <b-btn class="pull-right search-modal-btn btn-invoices" title="Find Client" v-b-modal.client-modal>
+              <b-btn class="pull-right search-modal-btn btn-invoices" title="Find Client" @click="showModal('clientSearchModalRef')">
                 <span class="hidden-xs">Find Client<i class="fe fe-search"></i></span>
               </b-btn>
               <div class="clearfix"></div>
@@ -128,7 +128,7 @@
                 :label-cols="2"
                 :feedback="feedback('project_id')"
               >
-                <b-select class="col-sm-4" v-model="model.project_id" :state="state('project_id')">
+                <b-select class="col-sm-6" v-model="model.project_id" :state="state('project_id')">
                   <option value="">Please Select Projects</option>
                   <option v-for="(option, index) in projects" :key="index" :value="option.id">
                     {{ option.name }}
@@ -162,7 +162,7 @@
                 <b-form-input
                   id="invoice_name"
                   name="invoice_name"
-                  class="col-sm-4"
+                  class="col-sm-6"
                   :placeholder="$t('validation.invoices.invoice_name')"
                   v-model="model.invoice_name"
                   :state="state('invoice_name')"
@@ -177,7 +177,7 @@
                 :label-cols="2"
                 :feedback="feedback('invoice_date')"
               >
-                <b-col sm="4">
+                <b-col sm="6">
                   <b-form-input
                     id="invoice_date"
                     name="invoice_date"
@@ -198,7 +198,7 @@
                 :label-cols="2"
                 :feedback="feedback('invoice_number')"
               >
-                <b-col sm="4">
+                <b-col sm="6">
                   <b-form-input
                     id="invoice_number"
                     name="invoice_number"
@@ -1597,6 +1597,9 @@ export default {
       this.last_Invoice_ref = data.invoice_number
     },
     showModal (ModalRef) {
+      if(ModalRef === 'clientSearchModalRef'){
+        this.$refs.clientSearchModalRef.show()
+      }
       if (ModalRef === 'sectionModalRef') {
         this.$refs.sectionModalRef.show()
       }

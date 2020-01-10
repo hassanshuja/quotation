@@ -84,7 +84,7 @@ export default {
         { key: 'assigned_user', label: 'Assigned Technician' },
         { key: 'invoice_number', label: 'Invoice #' },
 
-        { key: 'status', label: 'Status', sortable: true }
+        { key: 'status', label: 'Status' }
       ],
       actions: {
         destroy: this.$t('labels.backend.jobcard.actions.destroy')
