@@ -116,50 +116,119 @@ class JobcardController extends BackendController
     {
 
         /** @var Builder $query */
-        $query = $this->jobcard->query();
-        $requestSearchQuery = new RequestSearchQuery($request, $query, [
-            'status',
-            'jobcard_num',
-            'jobcard.created_at',
-            'jobcard.updated_at',
+        // $query = $this->jobcard->query();
+        // $requestSearchQuery = new RequestSearchQuery($request, $query, [
+        //     'status',
+        //     'jobcard_num',
+        //     'jobcard.created_at',
+        //     'jobcard.updated_at',
 
 
-        ]);
-            if ($request->get('exportData')) {
-            return $requestSearchQuery->export([
-            'jobcard_num',
-            'description',
-            'status',
-            ],
-                [
-                    __('validation.attributes.jobcard_num'),
-                    __('validation.attributes.description'),
-                    __('validation.attributes.status'),
+        // ]);
+        //     if ($request->get('exportData')) {
+        //     return $requestSearchQuery->export([
+        //     'jobcard_num',
+        //     'description',
+        //     'status',
+        //     ],
+        //         [
+        //             __('validation.attributes.jobcard_num'),
+        //             __('validation.attributes.description'),
+        //             __('validation.attributes.status'),
+        //         ],
+        //         'quotes');
+        // }
+
+
+
+
+
+
+        // return $requestSearchQuery->resultJobcard([
+        //     'jobcard.id',
+        //     'jobcard_num',
+        //     'description',
+        //     'problem_type',
+        //     'priority',
+        //     'status',
+        //     'facility_name',
+        //     'district',
+        //     'sub_district',
+        //     'projectmanager_id',
+        //     'contractor_id',
+        //     //'quoted_amount',
+        //     'jobcard.created_at',
+        //     'jobcard.updated_at',
+        // ]);
+        $invoice_rows = DB::select('SELECT invoice_number, JSON_EXTRACT(invoices.rows, "$[*].quotation_id") AS id FROM invoices');
+        // dd($invoice_rows);
+                /** @var Builder $query */
+                $query = $this->jobcard->query();
+                $requestSearchQuery = new RequestSearchQuery($request, $query, [
+                    'status',
+                    'jobcard_num',
+                    'jobcard.created_at',
+                    'jobcard.updated_at',
+        
+        
+                ]);
+        
+        
+                if ($request->get('exportData')) {
+                return $requestSearchQuery->export([
+                    'jobcard_num',
+                    'description',
+                    'status',
                 ],
-                'quotes');
-        }
-
-
-
-
-
-
-        return $requestSearchQuery->resultJobcard([
-            'jobcard.id',
-            'jobcard_num',
-            'description',
-            'problem_type',
-            'priority',
-            'status',
-            'facility_name',
-            'district',
-            'sub_district',
-            'projectmanager_id',
-            'contractor_id',
-            //'quoted_amount',
-            'jobcard.created_at',
-            'jobcard.updated_at',
-        ]);
+                    [
+                        __('validation.attributes.jobcard_num'),
+                        __('validation.attributes.description'),
+                        __('validation.attributes.status'),
+                    ],
+                    'quotes');
+                }
+        
+        
+        
+                $res = $requestSearchQuery->resultJobcard([
+                    'jobcard.id',
+                    'jobcard_num',
+                    'description',
+                    'problem_type',
+                    'priority',
+                    'status',
+                    'facility_name',
+                    'district',
+                    'sub_district',
+                    'projectmanager_id',
+                    'contractor_id',
+                    //'quoted_amount',
+                    'jobcard.created_at',
+                    'jobcard.updated_at',
+                ])->toArray();
+        
+                foreach($res["data"] as $key => $val) {
+                    // dd($invoice_rows, $val);
+                    foreach($invoice_rows  as $rowz){
+                        if($val['quotes'] !== null && $val['status'] == 'Invoiced'){
+                            // var_dump(json_decode($rowz->id));
+                            if(json_decode($rowz->id) !==  null){
+                                if(in_array($val['quotes']['id'], json_decode($rowz->id))){
+                                    $res["data"][$key]['invoice_number'] = $rowz->invoice_number;
+                                    break;
+                                }else{
+                                    $res["data"][$key]['invoice_number']  = '';
+                                }
+                            }
+                            
+                        }else{
+                            $res["data"][$key]['invoice_number'] =  '';
+                        }
+                    }
+                }
+        
+                // dd($res);
+        return $res;
     }
 
     public function jobcardreports(Request $request) {

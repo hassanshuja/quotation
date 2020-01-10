@@ -34,3 +34,4 @@ if (config('blog.enabled')) {
 }
 
 //Route::get('quotes/index', 'QuotesController@index')->name('quotes.index');
+
