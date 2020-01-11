@@ -132,7 +132,7 @@ class JobcardController extends BackendController
 
 
         if ($request->get('exportData')) {
-        return $requestSearchQuery->export([
+        return $requestSearchQuery->exportStatusReport([
             'jobcard_num',
             'description',
             'status',
@@ -142,7 +142,7 @@ class JobcardController extends BackendController
                 __('validation.attributes.description'),
                 __('validation.attributes.status'),
             ],
-            'quotes');
+            'quotes', $invoice_rows);
         }
 
 
