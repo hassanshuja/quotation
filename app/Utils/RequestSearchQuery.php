@@ -4,6 +4,7 @@ namespace App\Utils;
 
 use Illuminate\Http\Request;
 use App\Exports\DataTableExport;
+use App\Exports\DataTableExportStatusReport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -210,6 +211,16 @@ class RequestSearchQuery
 
         return Excel::download(
             new DataTableExport($headings, $this->query, $columns),
+            "$fileName-export-$currentDate.xlsx"
+        );
+    }
+
+    public function exportStatusReport($columns, $headings, $fileName, $invoice_rows)
+    {
+        $currentDate = date('dmY-His');
+
+        return Excel::download(
+            new DataTableExportStatusReport($headings, $this->query, $columns, $invoice_rows),
             "$fileName-export-$currentDate.xlsx"
         );
     }

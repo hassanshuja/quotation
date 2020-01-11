@@ -1529,7 +1529,6 @@ export default {
     },
     showModal (ModalRef) {
       if(ModalRef === 'clientSearchModalRef'){
-        console.log('asldkfjalsdkjf')
         this.$refs.clientSearchModalRef.show()
       }
       if (ModalRef === 'sectionModalRef') {
