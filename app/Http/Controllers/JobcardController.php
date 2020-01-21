@@ -137,11 +137,13 @@ class JobcardController extends BackendController
             'jobcard_num',
             'description',
             'status',
+            'facility_name'
         ],
             [
                 __('validation.attributes.jobcard_num'),
                 __('validation.attributes.description'),
                 __('validation.attributes.status'),
+                __('validation.jobcards.facility_name'),
             ],
             'quotes', $invoice_rows);
         }
