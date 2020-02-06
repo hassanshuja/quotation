@@ -27,6 +27,7 @@ class Quotes extends Model
 
      protected $with = [
         'jobcard',
+        'jobcardQuotes'
     ];
 
 
@@ -69,6 +70,12 @@ class Quotes extends Model
     { 
 
         return $this->belongsTo(Jobcard::class);
+    }
+
+    public function jobcardQuotes()
+    { 
+
+        return $this->belongsTo(Jobcard::class)->where('status', 'Quoted');
     }
 
 }

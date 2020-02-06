@@ -646,17 +646,18 @@ class AjaxController extends Controller
 
     public function QuotedJobcards(Request $request, Quotes $quotes){
        //$completedJobcards = $quotes::where( 'status', 'completed')->get();
-       $quotedJobcards = $quotes::select( 'jobcard_id')->get();
-
+       $quotedJobcards = $quotes::select('quotes.jobcard_id')->join('jobcard', 'jobcard.id', '=', 'quotes.jobcard_id')
+                        ->where('jobcard.status', 'Quoted')->count();
 
        //$savedNewUser = $jobcard::whereDate('created_at', Carbon::today())->get();
         // $savedNewUser  =  $users::where('created_at','new Date().toISOString()');
-        $quotedJobcardsCount    =   $quotedJobcards->count();
+        // $quotedJobcardsCount    =   $quotedJobcards->count();
+        // dd($quotedJobcards);
 
-            if ($quotedJobcardsCount) {
+            if ($quotedJobcards) {
             return response()->json([
                 'status' => 200,
-                'quoted_jobcards' => $quotedJobcardsCount
+                'quoted_jobcards' => $quotedJobcards
             ]);
         } else {
             return response()->json([
@@ -717,8 +718,9 @@ class AjaxController extends Controller
 
     public function Quotedamount(Request $request, Quotes $quotes){
 
-    $quotedamount = $quotes::select('total_amount')
-                  ->sum('total_amount');
+    $quotedamount = $quotes::join('jobcard', 'jobcard.id', '=', 'quotes.jobcard_id')
+    ->where('jobcard.status', 'Quoted')->sum('quotes.total_amount');
+                 ;
 
 
 
