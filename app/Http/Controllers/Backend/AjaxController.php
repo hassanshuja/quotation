@@ -735,7 +735,7 @@ class AjaxController extends Controller
             if ($quotedamount) {
             return response()->json([
                 'status' => 200,
-                'quoted_amountSum' => $quotedamount
+                'quoted_amountSum' => round($quotedamount, 2)
             ]);
         } else {
             return response()->json([
