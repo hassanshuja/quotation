@@ -118,8 +118,8 @@ class JobcardController extends BackendController
     {
 
         $invoice_rows = DB::select('SELECT invoice_number, JSON_EXTRACT(invoices.rows, "$[*].quotation_id") AS id FROM invoices');
-// dd($invoice_rows);
         /** @var Builder $query */
+        
         $query = $this->jobcard->query();
         $requestSearchQuery = new RequestSearchQuery($request, $query, [
             'status',
