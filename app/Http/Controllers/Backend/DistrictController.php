@@ -38,7 +38,6 @@ class DistrictController extends BackendController
 
         /** @var Builder $query */
         $query = $this->district->query();
-        // dd($query);
         $requestSearchQuery = new RequestSearchQuery($request, $query, [
             
             'name',
@@ -75,14 +74,11 @@ class DistrictController extends BackendController
     public function store(StoreDistrictRequest $request)
     {
        
-       // dd($request->all());   
         $data = $request->input();
         
-        //dd($data);
         //$data['jobcard_id'] = $request->jobcard_id['id'];    
         $district = $this->district->make($data); 
        
-       //dd($request->input());     
        $this->district->save($district, $data);
 
        return $this->redirectResponse($request, __('alerts.backend.District.created'));

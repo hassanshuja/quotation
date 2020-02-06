@@ -35,7 +35,6 @@ class EloquentReportsRepository extends EloquentBaseRepository implements Report
      */
     public function save(Reports $report, array $input)
     {
-        //dd($report,$input);
         DB::transaction(function () use ($report, $input) {
             if (! $report->save()) {
                 throw new GeneralException(__('exceptions.backend.reports.save'));

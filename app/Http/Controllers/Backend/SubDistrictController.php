@@ -37,7 +37,6 @@ class SubDistrictController extends BackendController
 
         /** @var Builder $query */
         $query = $this->subdistrict->query();
-        // dd($query);
         $requestSearchQuery = new RequestSearchQuery($request, $query, [
             
             'name',
@@ -75,14 +74,10 @@ class SubDistrictController extends BackendController
     public function store(StoreSubDistrictRequest $request)
     {
        
-       // dd($request->all());   
         $data = $request->input();
         
-        //dd($data);
         //$data['jobcard_id'] = $request->jobcard_id['id'];    
         $subdistrict = $this->subdistrict->make($data); 
-       //dd($subdistrict);
-       //dd($request->input());     
        $this->subdistrict->save($subdistrict, $data);
 
        return $this->redirectResponse($request, __('alerts.backend.SubDistrict.created'));
@@ -153,7 +148,6 @@ class SubDistrictController extends BackendController
      */
     public function destroy(SubDistrict $subdistrict, Request $request)
     {
-   //dd($subdistrict);
         $this->subdistrict->destroy($subdistrict);
 
         return $this->redirectResponse($request, __('alerts.backend.SubDistrict.deleted'));
@@ -168,7 +162,6 @@ class SubDistrictController extends BackendController
     {
         $action = $request->get('action');
         $ids = $request->get('ids');
-        //dd($ids);
         switch ($action) {
             case 'destroy':                
                     $this->subdistrict->batchDestroy($ids);

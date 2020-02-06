@@ -20,7 +20,6 @@ class VatController extends BackendController
 
     public function __construct(VatRepository $vat)
     {
-        //dd($jobcards);
         $this->vat = $vat;
     }
     
@@ -77,7 +76,6 @@ class VatController extends BackendController
      */
     public function store(StoreVatRequest $request)
     {
-        //dd($request->all());    
         $vat = $this->vat->make(
             $request->only('name','rate')
         ); 

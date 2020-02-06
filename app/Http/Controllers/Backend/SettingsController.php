@@ -20,7 +20,6 @@ class SettingsController extends BackendController
 
     public function __construct(SettingsRepository $Settings)
     {
-        //dd($jobcards);
         $this->setting = $Settings;
     }
     
@@ -81,7 +80,6 @@ class SettingsController extends BackendController
     public function store(StoreSettingsRequest $request)
     {
        
-       // dd($request->all());   
         $data = $request->input();
         $new_logo = $request->selectedLogo;
 
@@ -97,7 +95,6 @@ class SettingsController extends BackendController
         //$data['jobcard_id'] = $request->jobcard_id['id'];    
         $setting = $this->setting->make($data); 
        
-       //dd($request->input());     
        $this->setting->save($setting, $data);
 
        return $this->redirectResponse($request, __('alerts.backend.settings.created'));

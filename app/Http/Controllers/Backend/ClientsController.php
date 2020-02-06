@@ -20,7 +20,6 @@ class ClientsController extends BackendController
 
     public function __construct(ClientsRepository $client)
     {
-        //dd($jobcards);
         $this->clients = $client;
     }
     
@@ -83,7 +82,6 @@ class ClientsController extends BackendController
      */
     public function store(StoreClientsRequest $request)
     {
-        //dd($request->all());    
         $client = $this->clients->make($request->all()); 
         
        $this->clients->save($client, $request->input());
