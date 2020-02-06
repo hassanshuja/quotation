@@ -32,14 +32,11 @@ class DataTableExportStatusReport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        // dd($this->invoice_rows);
         array_push($this->columns, 'id');
 
         $res = $this->query->with('quotes')->get($this->columns);
-
-        // dd($res);
+        
         foreach($res as $key => $val) {
-            // dd($invoice_rows, $val);
             foreach($this->invoice_rows  as $rowz){
                 
                 if($val['quotes'] !== null && $val['status'] == 'Invoiced'){
@@ -60,16 +57,10 @@ class DataTableExportStatusReport implements FromCollection, WithHeadings
             }
         }
 
-        // unset($this->columns[3]);
-
-
-        //  dd($this->columns,'lskdfj');
         array_push($this->columns, 'invoice_number');
-
 
         return $res->each(function (Model $item) {
             unset($item->id);
-            // dd($item);
             return $item->setAppends([]);
         });
     }

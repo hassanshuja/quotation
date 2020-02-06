@@ -21,7 +21,6 @@ class InvoicesController extends BackendController
 
     public function __construct(InvoicesRepository $invoices)
     {
-        //dd($jobcards);
         $this->invoice = $invoices;
     }
 
@@ -253,7 +252,6 @@ class InvoicesController extends BackendController
 
        $invoice = $this->invoice->make($data);
 
-       //dd($request->input());
        $data_saved = $this->invoice->save($invoice, $data);
        if($data_saved) {
             /*************** UPDATE JOBCARD ***************/

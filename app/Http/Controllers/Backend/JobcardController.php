@@ -31,7 +31,6 @@ class JobcardController extends BackendController
      */
     public function __construct(JobcardRepository $jobcard, Builder $query)
     {
-        //dd($jobcards);
         $this->jobcard = $jobcard;
         $this->query = $query;
     }
@@ -64,7 +63,6 @@ class JobcardController extends BackendController
         ]);
 
         if ($request->get('exportData')) {
-            //dd('hello');
             return $requestSearchQuery->export([
                 'jobcard_num',
                 'description',
@@ -161,7 +159,6 @@ class JobcardController extends BackendController
         //     'jobcard.updated_at',
         // ]);
         $invoice_rows = DB::select('SELECT invoice_number, JSON_EXTRACT(invoices.rows, "$[*].quotation_id") AS id FROM invoices');
-        // dd($invoice_rows);
                 /** @var Builder $query */
                 $query = $this->jobcard->query();
                 $requestSearchQuery = new RequestSearchQuery($request, $query, [
@@ -208,7 +205,6 @@ class JobcardController extends BackendController
                 ])->toArray();
         
                 foreach($res["data"] as $key => $val) {
-                    // dd($invoice_rows, $val);
                     foreach($invoice_rows  as $rowz){
                         if($val['quotes'] !== null && $val['status'] == 'Invoiced'){
                             // var_dump(json_decode($rowz->id));
@@ -226,8 +222,6 @@ class JobcardController extends BackendController
                         }
                     }
                 }
-        
-                // dd($res);
         return $res;
     }
 
@@ -235,7 +229,6 @@ class JobcardController extends BackendController
         /** @var Builder $query */
         $query = $this->jobcard->query();
         $model = $query->getModel();
-        // dd($request->all());
 
         if(isset($request->item_id)) {
             $query->where('item_id', $request->item_id);
@@ -332,14 +325,12 @@ class JobcardController extends BackendController
     {
         
        //  $data = $request->all();
-       // // dd($data);
        //  // $data['projects_id'] = $request->projects_id['id'];
        //  // $data['labour_rates_id'] = $request->labour_rates_id['id'];
        //  // $data['materials_rates_id'] = $request->materials_rates_id['id'];
        //  // $data['contractor_id'] = $request->contractor_id['id'];
        //  // $data['quotations_id'] = $request->quotations_id['id'];
 
-       //  //dd($data);
        //  $jobcard = $this->jobcard->make($data);
 
        //  if ('publish' === $data['status']) {
@@ -382,7 +373,6 @@ class JobcardController extends BackendController
             }
             $data['attachment_receipt'] = json_encode($imageNames);
         }
-        // dd($data);
         $jobcard = $this->jobcard->make($data);
 
         $jobcarStatus = $request->status;
@@ -570,7 +560,6 @@ class JobcardController extends BackendController
     public function file(StoreJobcardRequest $request) {
 
        // $data = $request->all();
-       // //dd($data);
        //  if(isset($data['before_pictures'])) {
        //      $imageNames = array();
        //      $images = $data['before_pictures'];
@@ -591,7 +580,6 @@ class JobcardController extends BackendController
        //      }
        //      $data['after_pictures'] = json_encode($imageNames);
        //  }
-       //  // dd($data);
 
        //  $jobcard = $this->jobcard->make($data);
 
@@ -636,18 +624,15 @@ class JobcardController extends BackendController
         return $column;
     }
 
-    public function getSearchValue(StatusReport $statusreport, Request $request, User $user){
-            // dd('hello');
+    public function getSearchValue(Request $request, User $user){
          $na = $user::where('name',  'LIKE', "%{$request->get('keyword')}%")->groupBy('name')->pluck('name');
-    //dd($na);
     return $na;
 
     }
     public function problemtypes(Jobcard $jobcard, Request $request) {
-     $na = $jobcard::where('problem_type',  'LIKE', "%{$request->get('keyword')}%")->groupBy('problem_type')->pluck('problem_type');
-       // dd($na);
+        $na = $jobcard::where('problem_type',  'LIKE', "%{$request->get('keyword')}%")->groupBy('problem_type')->pluck('problem_type');
         return  $na;
-           }
+    }
 
     public function priority(Jobcard $jobcard, Request $request) {
         return  $jobcard::where('priority',  'LIKE', "%{$request->get('keyword')}%")->groupBy('priority')->pluck('priority');

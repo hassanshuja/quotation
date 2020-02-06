@@ -116,6 +116,8 @@ class RequestSearchQuery
         }
     }
 
+   
+
     /**
      * @param $columns
      *
@@ -132,9 +134,7 @@ class RequestSearchQuery
 
         $model = $this->query->getModel();
         $user_id = auth()->user()->id;
-        //dd($user_id);
         $role = auth()->user()->roles;
-        //dd($role);
         $user_role = isset($role[0]->id ) ? $role[0]->id : '';
 
 
@@ -178,7 +178,6 @@ class RequestSearchQuery
             }
         }
 
-        //dd($user_role);
         // return response()->json(['hi' => !empty($user_role)]);
         if ($user_role > 1 || !empty($user_role)) {
             $result =  $this->query->Where('contractor_id', $user_id)->paginate($this->request->get('perPage'), $columns);
@@ -187,10 +186,8 @@ class RequestSearchQuery
         //     $result = vsprintf(str_replace('?', '%s', $this->query->toSql()), collect($this->query->getBindings())->map(function ($binding) {
         //         return is_numeric($binding) ? $binding : "'{$binding}'";
         //     })->toArray());
-        // dd($result);
             $result = $this->query->with('quotes')->paginate($this->request->get('perPage'), $columns);
             // return response()->json(['hi' => $result]);
-            // dd($result);
             return $result;
         }
 }

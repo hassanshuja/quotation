@@ -20,7 +20,6 @@ class LabourRateController extends BackendController
 
     public function __construct(LabourRateRepository $labour_rate)
     {
-        //dd($jobcards);
         $this->labour_rate = $labour_rate;
     }
     
@@ -77,7 +76,6 @@ class LabourRateController extends BackendController
      */
     public function store(StoreLabourRateRequest $request)
     {
-        //dd($request->all());    
         $labour_rate = $this->labour_rate->make(
             $request->only('name','rate')
         ); 

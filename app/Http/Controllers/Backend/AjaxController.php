@@ -379,7 +379,6 @@ class AjaxController extends Controller
              })->groupBy('name')->pluck('name');
           // $na = $user::where('name',  'LIKE', "%{$request->get('keyword')}%")->groupBy('name')->pluck('name');
 
-        //dd($tchnician_name);
         return $tchnician_name;
         // exit;
         // return $user->query()
@@ -400,10 +399,8 @@ class AjaxController extends Controller
       public function getStatus(UserRepository $user, Jobcard $jobcard, ProjectManager $project_managers, Request $request)
     {
           $val= $request->val;
-         //dd('hello');
           $status = $jobcard::where('status',  'LIKE', "%{$request->get('keyword')}%")->groupBy('status')->pluck('status');
         //$manager_name = $jobcard->query()->select('name')->where('name','val')->get();
-        //dd($status,'hhhh');
         return $status;
         // exit;
         // return $user->query()
@@ -415,10 +412,8 @@ class AjaxController extends Controller
     public function getAgeingStatus(UserRepository $user, Jobcard $jobcard, Invoices $invoice, Request $request)
     {
           $val= $request->val;
-         //dd('hello');
           $status = $invoice::where('invoice_status',  'LIKE', "%{$request->get('keyword')}%")->groupBy('invoice_status')->pluck('invoice_status');
         //$manager_name = $jobcard->query()->select('name')->where('name','val')->get();
-        //dd($status,'hhhh');
         return $status;
         // exit;
         // return $user->query()
@@ -431,10 +426,8 @@ class AjaxController extends Controller
     public function getAgeingName(UserRepository $user, Jobcard $jobcard, Invoices $invoice, Request $request)
     {
           $val= $request->val;
-         //dd('hello');
           $status = $invoice::where('client_name',  'LIKE', "%{$request->get('keyword')}%")->groupBy('client_name')->pluck('client_name');
         //$manager_name = $jobcard->query()->select('name')->where('name','val')->get();
-        //dd($status,'hhhh');
         return $status;
         // exit;
         // return $user->query()
@@ -548,7 +541,6 @@ class AjaxController extends Controller
       $id = $request->id;
       $image_name = $request->image_name;
       $type = $request->type;
-      // dd($image_name);
       $result = $jobcard->query()->where('id', $id)->select('*')->get();
       if ($type == 'before_pictures') {
         $before_pictures = json_decode($result[0]->before_pictures, true);
@@ -633,12 +625,10 @@ class AjaxController extends Controller
     public function CompleteJobcards( Request $request, Jobcard $jobcard){
 
         $completedJobcards = $jobcard::where( 'status', 'completed')->get();
-        //dd($completedJobcards);
 
        //$savedNewUser = $jobcard::whereDate('created_at', Carbon::today())->get();
         // $savedNewUser  =  $users::where('created_at','new Date().toISOString()');
         $completedJobcardsCount    =   $completedJobcards->count();
-        //dd($completedJobcardsCount);
 
             if ($completedJobcardsCount) {
             return response()->json([
@@ -658,12 +648,10 @@ class AjaxController extends Controller
        //$completedJobcards = $quotes::where( 'status', 'completed')->get();
        $quotedJobcards = $quotes::select( 'jobcard_id')->get();
 
-        //dd($quotedJobcards);
 
        //$savedNewUser = $jobcard::whereDate('created_at', Carbon::today())->get();
         // $savedNewUser  =  $users::where('created_at','new Date().toISOString()');
         $quotedJobcardsCount    =   $quotedJobcards->count();
-        //dd($quotedJobcardsCount);
 
             if ($quotedJobcardsCount) {
             return response()->json([
@@ -682,12 +670,10 @@ class AjaxController extends Controller
 
     public function UnallocatedJobcard(Request $request, Jobcard $jobcard){
        $unallocatedJobcards = $jobcard::where( 'status', 'received')->get();
-        //dd($unallocatedJobcards);
 
        //$savedNewUser = $jobcard::whereDate('created_at', Carbon::today())->get();
         // $savedNewUser  =  $users::where('created_at','new Date().toISOString()');
         $unallocatedJobcardsCount    =   $unallocatedJobcards->count();
-        //dd($unallocatedJobcardsCount);
 
             if ($unallocatedJobcardsCount) {
             return response()->json([
@@ -709,12 +695,10 @@ class AjaxController extends Controller
              //$completedJobcards = $quotes::where( 'status', 'completed')->get();
        $progressJobcards = $jobcard::select('contractor_id')->where('status', 'Assigned')->get();
 
-        //dd($progressJobcards);
 
        //$savedNewUser = $jobcard::whereDate('created_at', Carbon::today())->get();
         // $savedNewUser  =  $users::where('created_at','new Date().toISOString()');
         $progressJobcardsCount    =   $progressJobcards->count();
-        //dd($progressJobcardsCount);
 
             if ($progressJobcardsCount) {
             return response()->json([
@@ -741,12 +725,10 @@ class AjaxController extends Controller
        //$qoutedamount = $quotes::select( 'total_amount')->get();
       // $qoutedamount = $quotes::sum('total_amount')->get();
 
-        //dd($quotedamount);
 
        //$savedNewUser = $jobcard::whereDate('created_at', Carbon::today())->get();
         // $savedNewUser  =  $users::where('created_at','new Date().toISOString()');
         // $qoutedamountSum    =   sum($qoutedamount);
-        //dd($qoutedamountSum);
 
             if ($quotedamount) {
             return response()->json([
@@ -767,16 +749,13 @@ class AjaxController extends Controller
 $invoiceamount = $invoice::select('total_amount')
                   ->sum('total_amount');
 
-//dd($invoiceamount);
        //$qoutedamount = $quotes::select( 'total_amount')->get();
        //$qoutedamount = $invoice::sum('total_amount')->get();
 
-        //dd($qoutedamount);
 
        //$savedNewUser = $jobcard::whereDate('created_at', Carbon::today())->get();
         // $savedNewUser  =  $users::where('created_at','new Date().toISOString()');
        // $qoutedamountSum    =   sum($qoutedamount);
-        //dd($qoutedamountSum);
 
             if ($invoiceamount) {
             return response()->json([
@@ -796,12 +775,10 @@ $invoiceamount = $invoice::select('total_amount')
 
     public function InvoicedJobcard(Request $request, Jobcard $jobcard){
        $invoicedJobcards = $jobcard::where( 'status', 'invoiced')->get();
-        //dd($invoicedJobcards);
 
        //$savedNewUser = $jobcard::whereDate('created_at', Carbon::today())->get();
         // $savedNewUser  =  $users::where('created_at','new Date().toISOString()');
         $invoicedJobcardsCount    =   $invoicedJobcards->count();
-        //dd($invoicedJobcardsCount);
 
             if ($invoicedJobcardsCount) {
             return response()->json([

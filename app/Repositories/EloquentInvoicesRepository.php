@@ -35,7 +35,6 @@ class EloquentInvoicesRepository extends EloquentBaseRepository implements Invoi
      */
     public function save(Invoices $invoice, array $input)
     {
-        //dd($invoice,$input);
         DB::transaction(function () use ($invoice, $input) {
             if (! $invoice->save()) {
                 throw new GeneralException(__('exceptions.backend.invoices.save'));

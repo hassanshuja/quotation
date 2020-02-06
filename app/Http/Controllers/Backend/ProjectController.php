@@ -20,7 +20,6 @@ class ProjectController extends BackendController
 
     public function __construct(ProjectRepository $project)
     {
-        //dd($jobcards);
         $this->project = $project;
     }
     
@@ -77,7 +76,6 @@ class ProjectController extends BackendController
      */
     public function store(StoreProjectRequest $request)
     {
-        //dd($request->all());    
         $project = $this->project->make(
             $request->only('name','description')
         ); 

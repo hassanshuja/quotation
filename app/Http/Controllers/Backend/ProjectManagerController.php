@@ -20,7 +20,6 @@ class ProjectManagerController extends BackendController
 
     public function __construct(ProjectManagerRepository $project_manager)
     {
-        //dd($jobcards);
         $this->project_manager = $project_manager;
     }
     
@@ -77,7 +76,6 @@ class ProjectManagerController extends BackendController
      */
     public function store(StoreProjectManagerRequest $request)
     {
-        //dd($request->all());    
         $project_manager = $this->project_manager->make(
             $request->only('name','description')
         ); 

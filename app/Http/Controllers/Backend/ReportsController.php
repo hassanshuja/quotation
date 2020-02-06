@@ -148,7 +148,6 @@ class ReportsController extends BackendController
         $data['jobcard_id'] = $request->jobcard_id['id'];
         $report = $this->report->make($data);
 
-       //dd($request->input());
        $this->report->save($report, $data);
 
        return $this->redirectResponse($request, __('alerts.backend.reports.created'));

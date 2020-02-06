@@ -20,7 +20,6 @@ class MaterialRateController extends BackendController
 
     public function __construct(MaterialRateRepository $materials_rate)
     {
-        //dd($jobcards);
         $this->materials_rate = $materials_rate;
     }
     
@@ -77,7 +76,6 @@ class MaterialRateController extends BackendController
      */
     public function store(StoreMaterialRateRequest $request)
     {
-        //dd($request->all());    
         $materials_rate = $this->materials_rate->make(
             $request->only('name','rate')
         ); 
