@@ -631,10 +631,8 @@ class JobcardController extends BackendController
     {
         if (property_exists($model, 'translatable') && \in_array($column, $model->translatable, true)) {
             $locale = app()->getLocale();
-
             return "$column->$locale";
         }
-
         return $column;
     }
 
