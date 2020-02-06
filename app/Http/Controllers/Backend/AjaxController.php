@@ -762,7 +762,7 @@ $invoiceamount = $invoice::select('total_amount')
             if ($invoiceamount) {
             return response()->json([
                 'status' => 200,
-                'invoice_amount' => $invoiceamount
+                'invoice_amount' => round($invoiceamount, 2)
             ]);
         } else {
             return response()->json([
